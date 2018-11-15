@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<stdio.h>
 #include<cmath>
 using namespace std;
 string give_me_formula(const float a)
@@ -69,7 +70,7 @@ class poly
 		}
 		return c;
 	}
-	friend poly operator*(int a, poly p)
+	friend poly operator*(float a, poly p)
 	{
 		poly c;
 		for(unsigned int i=0;i<p.array.size();i++)
@@ -78,7 +79,6 @@ class poly
 		}
 		return c;
 	}
-
 	friend ostream & operator <<(ostream & out,poly a)
 	{
 		string odp;
@@ -95,7 +95,7 @@ class poly
 				odp+=help.c_str();
 			}	
 		}
-		if(a[1]!=0)
+		if(a.array.size()>1&&a[1]!=0)
 		{
 			sprintf((char*)help.c_str(),(give_me_formula(a[1])+"x").c_str(),a[1]);
 			odp+=help.c_str();
@@ -127,7 +127,7 @@ class poly
 	double operator() (double a)
 	{
 		double sum=0;
-		for(int i=0;i<array.size();i++)
+		for(unsigned int i=0;i<array.size();i++)
 		{
 			sum+=pow(a,i)*array[i];
 		}
