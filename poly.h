@@ -44,33 +44,42 @@ class poly
 		}
 		return array[a];
 	}
-	poly operator+(poly a)
+	//a.array.at[j]
+	/*float operator[](unsigned int a) const
+	{
+		if(a>=array.size())
+		{
+			throw bbbb;
+		}
+		return array[a];
+	}*/
+	poly operator+(const poly &a)
 	{
 		poly c;
 		unsigned int i;
 		for(i=0;i<array.size();i++)
 		{
-			c[i]=array[i]+a[i];
+			c[i]=array[i]+a.array[i];
 		}
 		for(;i<a.array.size();i++)
 		{
-			c[i]=a[i];	
+			c[i]=a.array[i];	
 		}
 		return c;
 	}
-	friend poly operator*(poly a, poly p)
+	friend poly operator*(const poly &a,const poly &p)
 	{
 		poly c;
 		for(unsigned int i=0;i<p.array.size();i++)
 		{
 			for(unsigned int j=0;j<a.array.size();j++)
 			{
-				c[i+j]+=p[i]*a[j];
+				c[i+j]+=p.array[i]*a.array[j];
 			}
 		}
 		return c;
 	}
-	friend ostream & operator <<(ostream & out,poly a)
+	friend ostream & operator <<(ostream & out,const poly &a)
 	{
 		string odp;
 		string help;
@@ -80,20 +89,20 @@ class poly
 		}
 		for(unsigned int i=a.array.size()-1;i>1;i--)
 		{
-			if(a[i]!=0)
+			if(a.array[i]!=0)
 			{
-				sprintf((char*)help.c_str(),(give_me_formula(a[i])+"x^%d").c_str(),a[i],i);
+				sprintf((char*)help.c_str(),(give_me_formula(a.array[i])+"x^%d").c_str(),a.array[i],i);
 				odp+=help.c_str();
 			}	
 		}
-		if(a.array.size()>1&&a[1]!=0)
+		if(a.array.size()>1&&a.array[1]!=0)
 		{
-			sprintf((char*)help.c_str(),(give_me_formula(a[1])+"x").c_str(),a[1]);
+			sprintf((char*)help.c_str(),(give_me_formula(a.array[1])+"x").c_str(),a.array[1]);
 			odp+=help.c_str();
 		}
-		if(a[0]!=0)
+		if(a.array[0]!=0)
 		{
-			sprintf((char*)help.c_str(),give_me_formula(a[0]).c_str(),a[0]);
+			sprintf((char*)help.c_str(),give_me_formula(a.array[0]).c_str(),a.array[0]);
 			odp+=help.c_str();
 		}
 		if(odp[0]=='+')
