@@ -39,10 +39,7 @@ class poly
 	{
 		if(a>=array.size())
 		{
-			for(unsigned int i=array.size();i<=a;i++)
-			{
-				array.push_back(0);
-			}
+			array.resize(a+1,0);
 		}
 		return array[a];
 	}
@@ -126,17 +123,6 @@ class poly
 			}
 		}
 		return out<<odp;
-	}
-	void operator=(double a)
-	{
-		if(array.size()==0)
-		{
-			array.push_back(a);
-		}
-		else
-		{
-			array[0]=a;
-		}
 	}
 	double operator() (double a)
 	{
