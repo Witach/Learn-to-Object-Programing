@@ -58,24 +58,15 @@ class poly
 		}
 		return c;
 	}
-	poly operator*(poly a)
-	{
-		poly c;
-		for(unsigned int i=0;i<array.size();i++)
-		{
-			for(unsigned int j=0;j<a.array.size();j++)
-			{
-				c[i+j]+=array[i]*a[j];
-			}
-		}
-		return c;
-	}
-	friend poly operator*(float a, poly p)
+	friend poly operator*(poly a, poly p)
 	{
 		poly c;
 		for(unsigned int i=0;i<p.array.size();i++)
 		{
-			c[i]=p.array[i]*a;
+			for(unsigned int j=0;j<a.array.size();j++)
+			{
+				c[i+j]+=p[i]*a[j];
+			}
 		}
 		return c;
 	}
